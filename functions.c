@@ -19,10 +19,10 @@ int push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		return (-1);
 	}
-	for (i = 0; argv[1][i]; i++)
+	if (argv[1][0] == '-')
+		i = 1;
+	for (; argv[1][i]; i++)
 	{
-		if (argv[1][i] == '-')
-			continue;
 		if (!(argv[1][i] >= 48 && argv[1][i] <= 57))
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);

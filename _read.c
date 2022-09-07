@@ -65,7 +65,7 @@ void _read(FILE *file, stack_t **stack)
 	{
 		get_tokens(line);
 		f = get_func(argv[0]);
-		if (line[0] == 10 || line[0] == 32)
+		if (line[0] == 10 || line[0] == 32  || line[0] == '#' || !argv[0])
 		{
 			i++;
 			continue;
