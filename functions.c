@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 #include <stdlib.h>
 #include "monty.h"
 
@@ -61,15 +62,19 @@ int push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		return (-1);
 	}
-	if (argv[1][0] == '-')
-		i = 1;
-	for (; argv[1][i]; i++)
+	while (argv[1][i])
 	{
-		if (!(argv[1][i] >= 48 && argv[1][i] <= 57))
+		if (argv[1][i] == '-' && i == 0)
+		{
+			i++;
+			continue;
+		}
+		if (!isdigit(argv[1][i]))
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			return (-1);
 		}
+		i++;
 	}
 	new = malloc(sizeof(stack_t));
 	if (!new)

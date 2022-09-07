@@ -13,9 +13,9 @@
  */
 void get_tokens(char *str)
 {
-	argv[0] = strtok(str, " \n");
+	argv[0] = strtok(str, "\n ");
 	if (strcmp(argv[0], "push") == 0)
-		argv[1] = strtok(NULL, " \n");
+		argv[1] = strtok(NULL, "\n ");
 }
 
 /**
@@ -30,6 +30,7 @@ int (*get_func(char *str))(stack_t **stack, unsigned int line_number)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}
 	};
 	int i;
@@ -59,7 +60,7 @@ void _read(FILE *file, stack_t **stack)
 	{
 		get_tokens(line);
 		f = get_func(argv[0]);
-		if (line[0] == 10 || line[0] == 32  || line[0] == '#' || !argv[0])
+		if (!argv[0])
 		{
 			i++;
 			continue;
@@ -74,6 +75,7 @@ void _read(FILE *file, stack_t **stack)
 		if (res == -1)
 			__exit(stack, line, file);
 		i++;
+		argv[0] = NULL;
 	}
 	free(line);
 }
