@@ -6,26 +6,27 @@
  * push - This function pushes an element into the stack
  * @stack: Stack list
  * @line_number: Line number
+ *
+ * Return: ...
  */
-void push(stack_t **stack, unsigned int line_number)
+int push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
-	int i;
-
-	new = malloc(sizeof(stack_t));
-	if (!new)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+	int i = 0;
 
 	for (i = 0; argv[1][i]; i++)
 	{
 		if (!(argv[1][i] >= 48 && argv[1][i] <= 57))
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			exit(EXIT_FAILURE);
+			return (-1);
 		}
+	}
+	new = malloc(sizeof(stack_t));
+	if (!new)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		return (-1);
 	}
 	new->n = atoi(argv[1]);
 	new->prev = NULL;
@@ -34,15 +35,23 @@ void push(stack_t **stack, unsigned int line_number)
 	else
 		new->next = *stack;
 	*stack = new;
+	return (0);
 }
 
-void pall(stack_t **stack, unsigned int line_number)
+/**
+ * pall - This function prints list
+ * @stack: ...
+ * @line_number: ...
+ *
+ * Return: ...
+ */
+int pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *h;
 
 	(void) line_number;
 	if (!stack || !*stack)
-		return;
+		return (0);
 
 	h = *stack;
 	while (h)
@@ -50,4 +59,5 @@ void pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", h->n);
 		h = h->next;
 	}
+	return (0);
 }

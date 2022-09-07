@@ -16,22 +16,22 @@ void get_tokens(char *str)
 	char *token = NULL;
 	int i = 0;
 
-	token = strtok(str, "  \0");
-	while (!token)
+	token = strtok(str, " \n\t");
+	while (token)
 	{
 		argv[i] = token;
 		i++;
-		token = strtok(NULL, " \0");
+		token = strtok(NULL, " \n\t");
 	}
 }
 
 /**
  * get_func - This function selects the correct function for each opcode
- * @opcode: opcode to execute
+ * @str: ..
  *
  * Return: The appropriate function
  */
-void (*get_func(char *str))(stack_t **stack, unsigned int line_number)
+int (*get_func(char *str))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t functions[] = {
 		{"push", push},
@@ -50,26 +50,67 @@ void (*get_func(char *str))(stack_t **stack, unsigned int line_number)
 
 /**
  * _read - This function reads from a file pointer
- * @f: File descriptor for the file
+ * @file: File descriptor for the file
+ * @stack: ...
  */
 void _read(FILE *file, stack_t **stack)
 {
 	char *line = NULL;
-	unsigned int i = 0;
+	unsigned int i = 1;
 	size_t n = 0;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	int res;
+	int (*f)(stack_t **stack, unsigned int line_number);
 
 	while (_getline(&line, &n, file) != -1)
 	{
 		get_tokens(line);
 		f = get_func(argv[0]);
+		if (line[0] == 10 || line[0] == 32)
+		{
+			i++;
+			continue;
+		}
 		if (!f)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", i, argv[0]);
-			exit(EXIT_FAILURE);
+			res = -1;
 		}
-		f(stack, i);
+		else
+			res = f(stack, i);
+		if (res == -1)
+			__exit(stack, line, file);
 		i++;
 	}
 	free(line);
+}
+
+/**
+ * __exit - This function frees memory and exits with failure
+ * @stack: Address of the stack
+ * @line: string
+ * @file: file pointer
+ */
+void __exit(stack_t **stack, char *line, FILE *file)
+{
+	free(line);
+	free(argv);
+	fclose(file);
+	free_list(*stack);
+	exit(EXIT_FAILURE);
+}
+
+/**
+ * free_list - This function frees a linked list
+ * @stack: Head of the list
+ */
+void free_list(stack_t *stack)
+{
+	stack_t *h;
+
+	while (stack)
+	{
+		h = stack->next;
+		free(stack);
+		stack = h;
+	}
 }

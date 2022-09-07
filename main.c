@@ -4,19 +4,21 @@
 
 /**
  * main - This program interprets Monty ByteCodes files
- * @ac: Number of arguments passed to a function 
- * @argv: Array of arguments
+ * @ac: Number of arguments passed to a function
+ * @av: Array of arguments
  *
  * Return: 0 on success
  */
 int main(int ac, char **av)
 {
 	FILE *file;
-	stack_t **stack = NULL;
-	
+	stack_t *stack = NULL;
+
+	argv = malloc(sizeof(char *) * 5);
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
+		free(argv);
 		exit(EXIT_FAILURE);
 	}
 
@@ -24,10 +26,13 @@ int main(int ac, char **av)
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
+		free(argv);
 		exit(EXIT_FAILURE);
 	}
 
-	_read(file, stack);
+	_read(file, &stack);
+	free(argv);
+	free_list(stack);
 	fclose(file);
 	return (0);
 }
