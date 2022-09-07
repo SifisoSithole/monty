@@ -45,6 +45,10 @@ int add(stack_t **stack, unsigned int line_number);
 
 int _div(stack_t **stack, unsigned int line_number);
 
+int mul(stack_t **stack, unsigned int line_number);
+
+int mod(stack_t **stack, unsigned int line_number);
+
 int sub(stack_t **stack, unsigned int line_number);
 
 int pint(stack_t **stack, unsigned int line_number);
