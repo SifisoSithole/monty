@@ -41,6 +41,8 @@ void free_list(stack_t *stack);
 
 int pint(stack_t **stack, unsigned int line_number);
 
+int pop(stack_t **stack, unsigned int line_number);
+
 int pall(stack_t **stack, unsigned int line_number);
 
 int push(stack_t **stack, unsigned int line_number);

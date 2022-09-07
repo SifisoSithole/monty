@@ -3,6 +3,28 @@
 #include "monty.h"
 
 /**
+ * pop - This function pops top element in a stack
+ * @stack: Stack list
+ * @line_number: Line number
+ *
+ * Return: ...
+ */
+int pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *h;
+
+	if (!*stack)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack", line_number);
+		return (-1);
+	}
+	h = (**stack).next;
+	free(*stack);
+	*stack = h;
+	return (0);
+}
+
+/**
  * pint - This function pushes an element into the stack
  * @stack: Stack list
  * @line_number: Line number
