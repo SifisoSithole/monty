@@ -65,7 +65,7 @@ void _read(FILE *file, stack_t **stack)
 	while (_getline(&line, &n, file) != -1)
 	{
 		get_tokens(line);
-		if (!argv[0] || strcmp(argv[0], "nop") == 0)
+		if (!argv[0] || strcmp(argv[0], "nop") == 0 || argv[0][0] == '#')
 		{
 			i++;
 			continue;
