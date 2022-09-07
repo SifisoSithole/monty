@@ -21,6 +21,8 @@ int pop(stack_t **stack, unsigned int line_number)
 	h = (**stack).next;
 	free(*stack);
 	*stack = h;
+	if (*stack)
+		(**stack).prev = NULL;
 	return (0);
 }
 
