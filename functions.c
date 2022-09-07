@@ -12,7 +12,6 @@
  */
 int swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *h = *stack;
 	int i = 0;
 
 	while (h)
@@ -28,11 +27,9 @@ int swap(stack_t **stack, unsigned int line_number)
 		return (-1);
 	}
 	h = *stack;
-	*stack = h->next;
-	h->next = (*stack)->next;
-	(*stack)->next = h;
-	h->prev = *stack;
-	(*stack)->prev = NULL;
+	i = h->n;
+	h->n = h->next->n;
+	h->next->n = i;
 	return (0);
 }
 
