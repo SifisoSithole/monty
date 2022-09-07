@@ -32,6 +32,7 @@ int (*get_func(char *str))(stack_t **stack, unsigned int line_number)
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
+		{"add", add},
 		{NULL, NULL}
 	};
 	int i;
@@ -60,12 +61,12 @@ void _read(FILE *file, stack_t **stack)
 	while (_getline(&line, &n, file) != -1)
 	{
 		get_tokens(line);
-		f = get_func(argv[0]);
-		if (!argv[0])
+		if (!argv[0] || strcmp(argv[0], "nop") == 0)
 		{
 			i++;
 			continue;
 		}
+		f = get_func(argv[0]);
 		if (!f)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", i, argv[0]);
