@@ -34,6 +34,7 @@ int (*get_func(char *str))(stack_t **stack, unsigned int line_number)
 		{"swap", swap},
 		{"add", add},
 		{"sub", sub},
+		{"div", _div},
 		{NULL, NULL}
 	};
 	int i;
