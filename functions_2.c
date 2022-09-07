@@ -78,3 +78,56 @@ int _div(stack_t **stack, unsigned int line_number)
 	free(temp);
 	return (0);
 }
+
+/**
+ * mul - This function adds top 2 element in a stack
+ * @stack: Stack list
+ * @line_number: Line number
+ *
+ * Return: ...
+ */
+int mul(stack_t **stack, unsigned int line_number)
+{
+	stack_t *h = *stack, *temp;
+
+	if (!h || !h->next)
+	{
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+		return (-1);
+	}
+
+	h->n = h->next->n * h->n;
+	temp = h->next;
+	h->next = h->next->next;
+	free(temp);
+	return (0);
+}
+
+/**
+ * mod - This function adds top 2 element in a stack
+ * @stack: Stack list
+ * @line_number: Line number
+ *
+ * Return: ...
+ */
+int mod(stack_t **stack, unsigned int line_number)
+{
+	stack_t *h = *stack, *temp;
+
+	if (!h || !h->next)
+	{
+		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
+		return (-1);
+	}
+	if (h->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		return (-1);
+	}
+
+	h->n = h->next->n % h->n;
+	temp = h->next;
+	h->next = h->next->next;
+	free(temp);
+	return (0);
+}
