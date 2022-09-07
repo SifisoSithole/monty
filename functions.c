@@ -3,6 +3,24 @@
 #include "monty.h"
 
 /**
+ * pint - This function pushes an element into the stack
+ * @stack: Stack list
+ * @line_number: Line number
+ *
+ * Return: ...
+ */
+int pint(stack_t **stack, unsigned int line_number)
+{
+	if (!*stack)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		return (-1);
+	}
+	printf("%d\n", (**stack).n);
+	return (0);
+}
+
+/**
  * push - This function pushes an element into the stack
  * @stack: Stack list
  * @line_number: Line number
