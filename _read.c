@@ -13,16 +13,9 @@
  */
 void get_tokens(char *str)
 {
-	char *token = NULL;
-	int i = 0;
-
-	token = strtok(str, " \n\t");
-	while (token)
-	{
-		argv[i] = token;
-		i++;
-		token = strtok(NULL, " \n\t");
-	}
+	argv[0] = strtok(str, " \n");
+	if (strcmp(argv[0], "push") == 0)
+		argv[1] = strtok(NULL, " \n");
 }
 
 /**
@@ -36,6 +29,7 @@ int (*get_func(char *str))(stack_t **stack, unsigned int line_number)
 	instruction_t functions[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 	int i;
