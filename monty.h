@@ -39,6 +39,8 @@ void __exit(stack_t **stack, char *line, FILE *file);
 
 void free_list(stack_t *stack);
 
+int swap(stack_t **stack, unsigned int line_number);
+
 int pint(stack_t **stack, unsigned int line_number);
 
 int pop(stack_t **stack, unsigned int line_number);

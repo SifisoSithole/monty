@@ -4,6 +4,39 @@
 #include "monty.h"
 
 /**
+ * swap - This function pops top element in a stack
+ * @stack: Stack list
+ * @line_number: Line number
+ *
+ * Return: ...
+ */
+int swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *h = *stack;
+	int i = 0;
+
+	while (h)
+	{
+		if (i > 2)
+			break;
+		h = h->next;
+		i++;
+	}
+	if (i < 2)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		return (-1);
+	}
+	h = *stack;
+	*stack = h->next;
+	h->next = (*stack)->next;
+	(*stack)->next = h;
+	h->prev = *stack;
+	(*stack)->prev = NULL;
+	return (0);
+}
+
+/**
  * pop - This function pops top element in a stack
  * @stack: Stack list
  * @line_number: Line number
