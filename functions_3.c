@@ -98,7 +98,6 @@ int rotr(stack_t **stack, unsigned int line_number)
 	h->prev->next = NULL;
 	(**stack).prev = h;
 	h->next = *stack;
-	printf("done\n");
 	*stack = h;
 	return (0);
 }
