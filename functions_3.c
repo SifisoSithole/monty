@@ -51,3 +51,29 @@ int pstr(stack_t **stack, unsigned int line_number)
 	putchar('\n');
 	return (0);
 }
+
+/**
+ * rotl - This function prints the top element
+ * @stack: Stack list
+ * @line_number: Line number
+ *
+ * Return: ...
+ */
+int rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *h = *stack;
+
+	(void) line_number;
+	if (!h || !h->next)
+		return (0);
+
+	while (h->next)
+		h = h->next;
+	h->next = *stack;
+	(**stack).prev = h;
+	(*stack)->next->prev = NULL;
+	h = (**stack).next;
+	(**stack).next = NULL;
+	*stack = h;
+	return (0);
+}

@@ -51,6 +51,8 @@ int pchar(stack_t **stack, unsigned int line_number);
 
 int pstr(stack_t **stack, unsigned int line_number);
 
+int rotl(stack_t **stack, unsigned int line_number);
+
 int mod(stack_t **stack, unsigned int line_number);
 
 int sub(stack_t **stack, unsigned int line_number);
