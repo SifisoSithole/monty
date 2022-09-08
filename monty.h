@@ -53,6 +53,8 @@ int pstr(stack_t **stack, unsigned int line_number);
 
 int rotl(stack_t **stack, unsigned int line_number);
 
+int rotr(stack_t **stack, unsigned int line_number);
+
 int mod(stack_t **stack, unsigned int line_number);
 
 int sub(stack_t **stack, unsigned int line_number);

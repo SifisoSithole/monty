@@ -77,3 +77,28 @@ int rotl(stack_t **stack, unsigned int line_number)
 	*stack = h;
 	return (0);
 }
+
+/**
+ * rotr - This function prints the top element
+ * @stack: Stack list
+ * @line_number: Line number
+ *
+ * Return: ...
+ */
+int rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *h = *stack;
+
+	(void) line_number;
+	if (!h || !h->next)
+		return (0);
+
+	while (h->next)
+		h = h->next;
+	h->prev->next = NULL;
+	(**stack).prev = h;
+	h->next = *stack;
+	printf("done\n");
+	*stack = h;
+	return (0);
+}

@@ -111,7 +111,10 @@ int push(stack_t **stack, unsigned int line_number)
 	if (!stack || !*stack)
 		new->next = NULL;
 	else
+	{
+		(**stack).prev = new;
 		new->next = *stack;
+	}
 	*stack = new;
 	return (0);
 }
