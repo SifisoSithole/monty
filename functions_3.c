@@ -26,3 +26,28 @@ int pchar(stack_t **stack, unsigned int line_number)
 	printf("%c\n", n);
 	return (0);
 }
+
+/**
+ * pstr - This function prints the top element
+ * @stack: Stack list
+ * @line_number: Line number
+ *
+ * Return: ...
+ */
+int pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *h = *stack;
+
+	(void) line_number;
+	while (h)
+	{
+		if (h->n == 0)
+			break;
+		if (!(h->n > 0 && h->n <= 127))
+			break;
+		putchar(h->n);
+		h = h->next;
+	}
+	putchar('\n');
+	return (0);
+}
