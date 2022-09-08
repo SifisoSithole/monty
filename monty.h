@@ -35,6 +35,8 @@ typedef struct instruction_s
 
 char **argv;
 
+int stacks;
+
 void __exit(stack_t **stack, char *line, FILE *file);
 
 void free_list(stack_t *stack);

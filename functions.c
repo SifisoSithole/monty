@@ -116,6 +116,8 @@ int push(stack_t **stack, unsigned int line_number)
 		new->next = *stack;
 	}
 	*stack = new;
+	if (stacks == 0)
+		rotl(stack, line_number);
 	return (0);
 }
 

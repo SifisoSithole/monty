@@ -15,6 +15,7 @@ int main(int ac, char **av)
 	stack_t *stack = NULL;
 
 	argv = malloc(sizeof(char *) * 5);
+	stacks = 1;
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");

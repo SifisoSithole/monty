@@ -74,6 +74,18 @@ void _read(FILE *file, stack_t **stack)
 			i++;
 			continue;
 		}
+		if (strcmp(argv[0], "stack") == 0)
+		{
+			stacks = 1;
+			i++;
+			continue;
+		}
+		if (strcmp(argv[0], "queue") == 0)
+		{
+			stacks = 0;
+			i++;
+			continue;
+		}
 		f = get_func(argv[0]);
 		if (!f)
 		{
