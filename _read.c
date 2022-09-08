@@ -14,7 +14,7 @@
 void get_tokens(char *str)
 {
 	argv[0] = strtok(str, "\n ");
-	if (strcmp(argv[0], "push") == 0)
+	if (argv[0] && (strcmp(argv[0], "push") == 0))
 		argv[1] = strtok(NULL, "\n ");
 }
 
